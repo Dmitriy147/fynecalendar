@@ -11,8 +11,9 @@
 - выделение текущей выбранной даты
 
 ```go
-// NewCalendar создаёт виджет календаря (активная дата, начальная дата активного интервала, конечная дата активного интервала)
-	calendar := NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+// NewCalendar создаёт виджет календаря
+// (активная дата, начальная дата активного интервала, конечная дата активного интервала)
+	calendar := NewMyCalendar(current_date, range_start, range_end, func(t time.Time) {
 		filt_label.Text = t.Format("Выбрана дата 02.01.2006")
 		filt_label.Refresh()
 	})
