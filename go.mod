@@ -1,4 +1,4 @@
-module github.com/Dmitriy147/fynecalendar/fynecalendar
+module github.com/Dmitriy147/fynecalendar
 
 go 1.23.3
 

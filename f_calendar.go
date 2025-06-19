@@ -1,4 +1,4 @@
-package fynecalendar
+package myfynecalendar
 
 import (
 	"math"
