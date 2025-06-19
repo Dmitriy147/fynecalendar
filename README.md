@@ -17,7 +17,7 @@ import "github.com/Dmitriy147/fynecalendar"
 ...
 // NewCalendar создаёт виджет календаря и возвращает выбранную дату
 // (активная дата, начальная дата активного интервала, конечная дата активного интервала)
-   calendar := NewMyCalendar(current_date, range_start, range_end, func(t time.Time) {
+   calendar := fynecalendar.NewMyCalendar(current_date, range_start, range_end, func(t time.Time) {
 	label1.Text = t.Format("Выбрана дата 02.01.2006")
    })
 ```
