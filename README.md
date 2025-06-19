@@ -12,15 +12,50 @@ https://github.com/fyne-io/fyne-x
 - указание интервала доступных дат для выбора (недоступные дни неактивны)
 - выделение цветом выбранной даты
 
-
+**HELLO WORLD!**!
 ```go
-import "github.com/Dmitriy147/fynecalendar"
-...
-// NewCalendar создаёт виджет календаря и возвращает выбранную дату
-// (активная дата, начальная дата активного интервала, конечная дата активного интервала)
-calendar := fynecalendar.NewMyCalendar(current_date, range_start, range_end, func(t time.Time) {
-    label1.Text = t.Format("Выбрана дата 02.01.2006")
-})
+package main
+
+import (
+	"time"
+
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/widget"
+	"github.com/Dmitriy147/fynecalendar"
+)
+
+func main() {
+	var range_start time.Time = time.Now().Add(-240 * time.Hour)
+	var range_end time.Time = time.Now().Add(-24 * time.Hour)
+	filt_label := widget.NewLabel("===")
+
+	// New app
+	a := app.New()
+	w := a.NewWindow("Календарь")
+	w.Resize(fyne.NewSize(500, 400))
+	w.CenterOnScreen()
+
+	// NewCalendar создаёт виджет календаря и возвращает выбранную дату
+  // (активная дата, начальная дата активного интервала, конечная дата активного интервала)
+	calendar_start := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+		filt_label.Text = t.Format("Выбрана дата начала 02.01.2006")
+		filt_label.Refresh()
+	})
+
+	calendar_end := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+		filt_label.Text = t.Format("Выбрана дата окончания 02.01.2006")
+		filt_label.Refresh()
+	})
+
+	cal := container.NewHBox(calendar_start, calendar_end)
+
+	c := container.NewVBox(cal, filt_label)
+	c.Refresh()
+	w.SetContent(c)
+	w.ShowAndRun()
+}
 ```
 
 **ВНИМАНИЕ!!!**! При первой сборке бинарника возможно ожидание запуска до 5 мин (особенности Fyne) - не спешите с Ctrl+C.
