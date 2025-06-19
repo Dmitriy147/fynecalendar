@@ -1,4 +1,5 @@
-# fynecalendar
+# fynecalendar 
+
 Моя версия Go Fyne Calendar widget. 
 Основа кодовой базы взята из репозитория
 https://github.com/fyne-io/fyne-x
@@ -13,7 +14,7 @@ https://github.com/fyne-io/fyne-x
 - выделение цветом выбранной даты
 
 
-**HELLO WORLD!**!
+**HELLO WORLD**
 ```go
 package main
 
