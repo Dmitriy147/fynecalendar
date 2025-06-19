@@ -1,2 +1,8 @@
 # fynecalendar
-My version of Go Fyne Calendar widget
+Моя версия Go Fyne Calendar widget.
+Основа кодовой базы взята из репозитория https://github.com/fyne-io/fyne-x
+
+Основные изменения:
+- локализайия - russian
+- указание интервала активных дат для выбора
+- выделение текущей выбранной даты
