@@ -11,7 +11,10 @@ https://github.com/fyne-io/fyne-x
 - указание интервала активных дат для выбора
 - выделение текущей выбранной даты
 
+
 ```go
+import "github.com/Dmitriy147/fynecalendar"
+...
 // NewCalendar создаёт виджет календаря и возвращает выбранную дату
 // (активная дата, начальная дата активного интервала, конечная дата активного интервала)
    calendar := NewMyCalendar(current_date, range_start, range_end, func(t time.Time) {
