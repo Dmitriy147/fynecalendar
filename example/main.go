@@ -7,6 +7,7 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
+	"github.com/Dmitriy147/fynecalendar"
 )
 
 func main() {
@@ -21,12 +22,12 @@ func main() {
 	w.CenterOnScreen()
 
 	///////////// CALENDAR ////////////////////////////////////
-	calendar_start := NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+	calendar_start := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
 		filt_label.Text = t.Format("Выбрана дата начала 02.01.2006")
 		filt_label.Refresh()
 	})
 
-	calendar_end := NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+	calendar_end := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
 		filt_label.Text = t.Format("Выбрана дата окончания 02.01.2006")
 		filt_label.Refresh()
 	})
