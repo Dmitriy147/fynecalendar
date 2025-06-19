@@ -2,6 +2,9 @@
 Моя версия Go Fyne Calendar widget.
 Основа кодовой базы взята из репозитория https://github.com/fyne-io/fyne-x
 
+![image](https://github.com/user-attachments/assets/9ce5fa21-3350-4c87-a8dc-90a36e56c462)
+
+
 Основные изменения:
 - локализация - russian
 - указание интервала активных дат для выбора
