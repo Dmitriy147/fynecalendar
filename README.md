@@ -38,7 +38,7 @@ func main() {
 	w.CenterOnScreen()
 
 	// NewCalendar создаёт виджет календаря и возвращает выбранную дату
-  // (активная дата, начальная дата активного интервала, конечная дата активного интервала)
+        // (активная дата, начальная дата активного интервала, конечная дата активного интервала)
 	calendar_start := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
 		filt_label.Text = t.Format("Выбрана дата начала 02.01.2006")
 		filt_label.Refresh()
