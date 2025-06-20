@@ -13,28 +13,28 @@ import (
 func main() {
 	var range_start time.Time = time.Now().Add(-240 * time.Hour)
 	var range_end time.Time = time.Now().Add(-24 * time.Hour)
-	filt_label := widget.NewLabel("===")
 
-	// New app
 	a := app.New()
 	w := a.NewWindow("Календарь")
-	w.Resize(fyne.NewSize(500, 400))
 	w.CenterOnScreen()
 
-	///////////// CALENDAR ////////////////////////////////////
-	calendar_start := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
-		filt_label.Text = t.Format("Выбрана дата начала 02.01.2006")
-		filt_label.Refresh()
+	lbl := widget.NewLabel("")
+
+	// create new calendar widget (rus/eng language -true/false, selected date, start active date interval, end active date interval)
+	calendar_start := fynecalendar.NewMyCalendar(true, range_end, range_start, range_end, func(t time.Time) {
+		lbl.Text = t.Format("selected: 02.01.2006")
+		lbl.Refresh()
 	})
 
-	calendar_end := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
-		filt_label.Text = t.Format("Выбрана дата окончания 02.01.2006")
-		filt_label.Refresh()
+	// create new calendar widget (rus/eng language -true/false, selected date, start active date interval, end active date interval)
+	calendar_end := fynecalendar.NewMyCalendar(false, range_end, range_start, range_end, func(t time.Time) {
+		lbl.Text = t.Format("selected: 02.01.2006")
+		lbl.Refresh()
 	})
 
 	cal := container.NewHBox(calendar_start, calendar_end)
 
-	c := container.NewVBox(cal, filt_label)
+	c := container.NewVBox(cal, lbl)
 	c.Refresh()
 	w.SetContent(c)
 	w.ShowAndRun()
