@@ -5,8 +5,9 @@
 https://github.com/fyne-io/fyne-x
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/9ce5fa21-3350-4c87-a8dc-90a36e56c462" alt="Описание изображения">
+  <img src="https://github.com/user-attachments/assets/ed468125-c363-445e-98bb-055c7d475b3c" alt="Описание изображения">
 </div>
+
 
 **Основные изменения:**
 - локализация - russian|english
