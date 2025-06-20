@@ -72,6 +72,7 @@ func (g *calendarLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
 // Calendar creates a new date time picker which returns a time object
 type Calendar struct {
 	widget.BaseWidget
+	englang     bool // язык виджета русский-true, eng-false
 	currentTime time.Time
 	startRange  time.Time
 	endRange    time.Time
@@ -141,34 +142,38 @@ func (c *Calendar) dateForButton(dayNum int) time.Time {
 func (c *Calendar) monthYear() string {
 
 	mon := c.currentTime.Month().String()[:3]
-	switch mon {
-	case "Jan":
-		mon = "Январь"
-	case "Feb":
-		mon = "Февраль"
-	case "Mar":
-		mon = "Март"
-	case "Apr":
-		mon = "Апрель"
-	case "May":
-		mon = "Май"
-	case "Jun":
-		mon = "Июнь"
-	case "Jul":
-		mon = "Июль"
-	case "Aug":
-		mon = "Август"
-	case "Sep":
-		mon = "Сентябрь"
-	case "Oct":
-		mon = "Октябрь"
-	case "Nov":
-		mon = "Ноябрь"
-	case "Dec":
-		mon = "Декабрь"
+
+	// если выбран русский для виджета
+	if c.englang {
+		switch mon {
+		case "Jan":
+			mon = "Январь"
+		case "Feb":
+			mon = "Февраль"
+		case "Mar":
+			mon = "Март"
+		case "Apr":
+			mon = "Апрель"
+		case "May":
+			mon = "Май"
+		case "Jun":
+			mon = "Июнь"
+		case "Jul":
+			mon = "Июль"
+		case "Aug":
+			mon = "Август"
+		case "Sep":
+			mon = "Сентябрь"
+		case "Oct":
+			mon = "Октябрь"
+		case "Nov":
+			mon = "Ноябрь"
+		case "Dec":
+			mon = "Декабрь"
+		}
 	}
+
 	// заголовок месяца и года
-	// return c.currentTime.Format("January 2006")
 	return mon + "  " + strconv.Itoa(c.currentTime.Year())
 }
 
@@ -182,21 +187,27 @@ func (c *Calendar) calendarObjects() []fyne.CanvasObject {
 		}
 		t := widget.NewLabel("-")
 		wek := time.Weekday(j).String()[:3]
-		switch wek {
-		case "Mon":
-			t = widget.NewLabel("Пон")
-		case "Tue":
-			t = widget.NewLabel("Втр")
-		case "Wed":
-			t = widget.NewLabel("Срд")
-		case "Thu":
-			t = widget.NewLabel("Чтв")
-		case "Fri":
-			t = widget.NewLabel("Птн")
-		case "Sat":
-			t = widget.NewLabel("Суб")
-		case "Sun":
-			t = widget.NewLabel("Вск")
+
+		// если выбран русский для виджета
+		if c.englang {
+			switch wek {
+			case "Mon":
+				t = widget.NewLabel("Пон")
+			case "Tue":
+				t = widget.NewLabel("Втр")
+			case "Wed":
+				t = widget.NewLabel("Срд")
+			case "Thu":
+				t = widget.NewLabel("Чтв")
+			case "Fri":
+				t = widget.NewLabel("Птн")
+			case "Sat":
+				t = widget.NewLabel("Суб")
+			case "Sun":
+				t = widget.NewLabel("Вск")
+			}
+		} else {
+			t = widget.NewLabel(wek)
 		}
 
 		t.Alignment = fyne.TextAlignCenter
@@ -237,9 +248,10 @@ func (c *Calendar) CreateRenderer() fyne.WidgetRenderer {
 	return widget.NewSimpleRenderer(dateContainer)
 }
 
-// NewCalendar создаёт виджет календаря (активная дата, начальная дата активного интервала, конечная дата активного интервала)
-func NewMyCalendar(currentTm time.Time, startTm time.Time, endTm time.Time, onSelected func(time.Time)) *Calendar {
+// create new calendar widget (rus/eng language -true/false, selected date, start active date interval, end active date interval)
+func NewMyCalendar(lang bool, currentTm time.Time, startTm time.Time, endTm time.Time, onSelected func(time.Time)) *Calendar {
 	c := &Calendar{
+		englang:     lang,
 		currentTime: currentTm,  // стартовая дата
 		onSelected:  onSelected, // функция выбора даты
 		startRange:  startTm,    // начало интервала доступных дат
