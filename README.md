@@ -9,7 +9,7 @@ https://github.com/fyne-io/fyne-x
 </div>
 
 **Основные изменения:**
-- локализация - russian
+- локализация - russian|english
 - указание интервала доступных дат для выбора (недоступные дни неактивны)
 - выделение цветом выбранной даты
 
@@ -39,14 +39,14 @@ func main() {
 	w.Resize(fyne.NewSize(500, 400))
 	w.CenterOnScreen()
 
-	// NewCalendar создаёт виджет календаря и возвращает выбранную дату
-        // (активная дата, начальная дата активного интервала, конечная дата активного интервала)
-	calendar_start := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+	// create new calendar widget (rus/eng language -true/false, selected date, start active date interval, end active date interval)
+	calendar_start := fynecalendar.NewMyCalendar(true, range_end, range_start, range_end, func(t time.Time) {
 		filt_label.Text = t.Format("Выбрана дата начала 02.01.2006")
 		filt_label.Refresh()
 	})
 
-	calendar_end := fynecalendar.NewMyCalendar(range_end, range_start, range_end, func(t time.Time) {
+	// create new calendar widget (rus/eng language -true/false, selected date, start active date interval, end active date interval)
+	calendar_end := fynecalendar.NewMyCalendar(true, range_end, range_start, range_end, func(t time.Time) {
 		filt_label.Text = t.Format("Выбрана дата окончания 02.01.2006")
 		filt_label.Refresh()
 	})
